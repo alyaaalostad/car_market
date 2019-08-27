@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Car Detail</title>
-</head>
-<body>
-		<h1>
-			{{car.make}} - {{car.model}}
-			<small>
-				{{car.year}}
-			</small>
-		</h1>
-		<hr>
-</body>
-</html>
+{%extends "base.html" %} 
+
+{% block title %}Detail{% endblock title %} 
+
+{% block content %}
+<p class="text-light bg-dark" >Car: </p>
+    <div class="alert alert-success" role="alert">{{car.make}}</div>
+<p class="text-light bg-dark">Model: </p>
+<div class="alert alert-success" role="alert">{{car.model}}</div>
+<p class="text-light bg-dark">year:</p>
+    <div class="alert alert-success" role="alert">{{car.year}}</div>
+	{% if car.car_img %}
+    <center><p><img src="{{car.car_img.url}}" alt="Cinque Terre" width="450" height="300" class="alert alert-light" class="card-img-top" role="alert" ></p></center>
+	{% endif %}
+    <a href="{% url 'car-update' car.id %}" class="btn btn-info">Update</button>
+    </a>
+    <a href="{% url 'car-delete' car.id %}" class="btn btn-danger">Delete</button>
+    </a>
+{% endblock content %}
+
+

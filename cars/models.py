@@ -5,6 +5,8 @@ class Car(models.Model):
 	make = models.CharField(max_length=120)
 	model = models.CharField(max_length=120)
 	year = models.IntegerField()
+	car_img=models.ImageField(blank=True)
+	last_updated= models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return "{} {} - {}".format(self.make, self.model, self.year)

@@ -1,19 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Car List</title>
-</head>
-<body>
+{% extends "base.html" %} 
+
+{% block title %}
+	Car List
+{% endblock title %}
+
+{% block content %}
+    {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }} alert alert-primary" role="alert">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<br>
+<div class="row">
 	{% for car in cars %}
-		<a href="{{car.get_absolute_url}}">
-			<h1>
-				{{car.make}} - {{car.model}}
-				<small>
-					{{car.year}}
-				</small>
-			</h1>
-		</a>
-		<hr>
+	<div class= "col-12 col-md-6 col-lg-4">
+
+
+<div class="card mb-3" style="max-width: 540px;">
+	<div class="row no-gutters">
+		<div>
+			{% if car.car_img %}
+
+			<img src="{{car.car_img.url}}" alt="Cinque Terre" width="350" height="200" class="card-img-top" class="card-img" >
+	
+			{% endif%}
+		</div>
+		<div class="col-md-8">
+			<div class="card-body">
+				<h5 class="card-title" style="font-family:optima, sans-serif ">{{car.make}} </h5>
+		<small class="text-muted"></br>Last updated: {{car.last_updated| timesince}} ago</small></p>
+				<a href="{% url 'car-detail' car.id %}"  class="btn btn-outline-info" role="button">more 
+				info</a>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+</div>
 	{% endfor %}
-</body>
-</html>
+</div>
+{% endblock content %}
+
